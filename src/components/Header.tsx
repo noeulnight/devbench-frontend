@@ -3,6 +3,7 @@ import { FaDiscord } from "react-icons/fa";
 import { useUserData } from "../hooks/useUserData";
 import { useState } from "react";
 import UserDrawer from "./UserDrawer";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -46,7 +47,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {!user && (
             <button
-              className="text-white px-4 py-2 font-semibold cursor-pointer"
+              className="text-white font-semibold cursor-pointer"
               onClick={() => (window.location.href = "/api/auth/login")}
             >
               로그인
@@ -65,6 +66,12 @@ export default function Header() {
               <span>{user.nickname}</span>
             </button>
           )}
+          <button
+            className="text-white font-semibold cursor-pointer md:hidden block"
+            onClick={() => setIsOpen(true)}
+          >
+            <AiOutlineMenu className="text-xl" />
+          </button>
           <button
             className="text-[#8c95f7] px-4 py-2 font-semibold cursor-pointer items-center gap-2 hidden md:flex"
             onClick={() =>

@@ -14,6 +14,11 @@ export default function UserDrawer({
   const { user } = useUserData();
   const navigate = useNavigate();
 
+  const handleNavigate = (path: string) => {
+    onClose();
+    navigate(path);
+  };
+
   return (
     <Drawer
       open={open}
@@ -23,45 +28,55 @@ export default function UserDrawer({
       className="text-white"
     >
       <div className="flex flex-col items-center justify-center w-full gap-5">
-        <div className="flex flex-col items-center justify-center bg-[#282828] w-full p-5 rounded-lg shadow-md">
-          <img
-            src={user?.avatarUrl}
-            alt="avatar"
-            className="w-24 h-24 rounded-full"
-          />
-          <p className="text-2xl mt-3 font-semibold">{user?.nickname}</p>
-          <div className="flex items-center justify-center gap-2 text-gray-400">
-            <p className="text-sm">{user?.level} 레벨</p>
-            <div className="w-1 h-1 bg-gray-500 rounded-full" />
-            <p className="text-sm">{user?.xp} XP</p>
+        {user ? (
+          <div className="flex flex-col items-center justify-center bg-[#282828] w-full p-5 rounded-lg shadow-md">
+            <img
+              src={user?.avatarUrl}
+              alt="avatar"
+              className="w-24 h-24 rounded-full"
+            />
+            <p className="text-2xl mt-3 font-semibold">{user?.nickname}</p>
+            <div className="flex items-center justify-center gap-2 text-gray-400">
+              <p className="text-sm">{user?.level} 레벨</p>
+              <div className="w-1 h-1 bg-gray-500 rounded-full" />
+              <p className="text-sm">{user?.xp} XP</p>
+            </div>
+            <p className="text-sm text-gray-400">
+              {user?.point?.toLocaleString()}P
+            </p>
+            <button
+              className="hover:text-[#bbbaba] text-red-500 transition-all duration-150 cursor-pointer mt-4"
+              onClick={() => navigate("/auth/logout")}
+            >
+              로그아웃
+            </button>
           </div>
-          <p className="text-sm text-gray-400">
-            {user?.point.toLocaleString()}P
-          </p>
+        ) : (
           <button
-            className="hover:text-[#bbbaba] text-red-500 transition-all duration-150 cursor-pointer mt-4"
-            onClick={() => navigate("/auth/logout")}
+            className="flex items-center cursor-pointer"
+            onClick={() => navigate("/")}
           >
-            로그아웃
+            <img src="/logo.png" alt="logo" className="w-10 h-10" />
+            <h1 className="text-2xl font-semibold">DevBench</h1>
           </button>
-        </div>
+        )}
 
         <div className="flex flex-col items-center justify-center w-full gap-5">
           <button
             className="hover:text-[#bbbaba] transition-all duration-150 text-xl font-bold cursor-pointer"
-            onClick={() => navigate("/leaderboard")}
+            onClick={() => handleNavigate("/leaderboard")}
           >
             리더보드
           </button>
           <button
             className="hover:text-[#bbbaba] transition-all duration-150 text-xl font-bold cursor-pointer"
-            onClick={() => navigate("/store")}
+            onClick={() => handleNavigate("/store")}
           >
             포인트 상점
           </button>
           <button
             className="hover:text-[#bbbaba] transition-all duration-150 text-xl font-bold cursor-pointer"
-            onClick={() => navigate("/purchase")}
+            onClick={() => handleNavigate("/purchase")}
           >
             결제 내역
           </button>

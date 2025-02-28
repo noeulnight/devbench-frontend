@@ -31,13 +31,13 @@ function ProductItem({
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col md:items-end items-center gap-2 md:w-44 w-auto">
           <p className="text-lg font-bold">
             {item.price.toLocaleString("ko-KR")}P
           </p>
           <button
             disabled={able < item.price}
-            className="bg-[#8C95F7] hover:bg-blue-900 disabled:bg-gray-400 cursor-pointer disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors duration-200"
+            className="bg-[#8C95F7] hover:bg-blue-900 disabled:bg-gray-400 cursor-pointer disabled:cursor-not-allowed font-semibold text-white px-3 py-2 rounded-lg transition-colors duration-200"
             onClick={() => handleOpen(item)}
           >
             구매

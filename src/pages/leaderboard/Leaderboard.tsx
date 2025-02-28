@@ -116,8 +116,8 @@ export default function Leaderboard() {
       <div className="flex flex-col gap-4 mt-10 w-full">
         <p className="text-sm">
           마지막 갱신:{" "}
-          {data?.nodes[0].updatedAt
-            ? new Date(data?.nodes[0].updatedAt).toLocaleString("ko-KR")
+          {data?.nodes && data.nodes.length > 0
+            ? new Date(data?.nodes[0]?.updatedAt)?.toLocaleString("ko-KR")
             : "N/A"}
         </p>
         {user && (
@@ -133,7 +133,7 @@ export default function Leaderboard() {
         )}
         {data &&
           !isLoading &&
-          data.nodes.map((item) => (
+          data.nodes?.map((item) => (
             <LeaderboardItem key={item.user.id} item={item} userId={user?.id} />
           ))}
       </div>

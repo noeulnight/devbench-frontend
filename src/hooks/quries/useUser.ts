@@ -4,6 +4,7 @@ import { UserResponse } from "../../types/user";
 
 const fetchMe = async () => {
   const { data } = await axiosClient.get<UserResponse>("/user/me");
+
   return data;
 };
 
