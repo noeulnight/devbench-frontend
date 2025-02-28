@@ -2,9 +2,14 @@ import Layout from "../../components/Layout";
 import { useUserData } from "../../hooks/useUserData";
 import { useProduct } from "../../hooks/quries/useProduct";
 import { AiOutlineLoading } from "react-icons/ai";
-import { ProductNode } from "../../types/product";
+import {
+  ProductNode,
+  ProductType,
+  ProductTypeLabel,
+} from "../../types/product";
 import { useState } from "react";
 import PurchaseDrawer from "../../components/PurchaseDrawer";
+import { Tag } from "antd";
 
 function ProductItem({
   item,
@@ -26,6 +31,9 @@ function ProductItem({
               className="w-30 h-30 rounded-lg"
             />
             <div className="ml-3">
+              <Tag color={item.type === ProductType.ROLE ? "blue" : "default"}>
+                {ProductTypeLabel[item.type]}
+              </Tag>
               <p className="text-lg font-bold">{item.name}</p>
               <p className="text-gray-400">{item.description}</p>
             </div>

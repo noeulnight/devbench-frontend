@@ -6,7 +6,7 @@ export interface PurchasesResponse {
 export interface PurchaseResponse {
   id: string;
   price: number;
-  status: string;
+  status: PurchaseStatus;
   productId: number;
   userId: string;
   transactionId: number;
@@ -25,8 +25,15 @@ export interface PurchaseResponse {
 }
 
 export enum PurchaseStatus {
-  PENDING = "지급 대기",
-  PROCESSING = "지급 처리중",
-  COMPLETED = "지급 완료",
-  FAILED = "지급 오류",
+  PENDING = "PENDING",
+  PROCESSING = "PROCESSING",
+  COMPLETED = "COMPLETED",
+  FAILED = "FAILED",
 }
+
+export const PurchaseStatusLabel: Record<PurchaseStatus, string> = {
+  [PurchaseStatus.PENDING]: "지급 대기",
+  [PurchaseStatus.PROCESSING]: "지급 처리중",
+  [PurchaseStatus.COMPLETED]: "지급 완료",
+  [PurchaseStatus.FAILED]: "지급 오류",
+};

@@ -6,6 +6,7 @@ export interface ProductResponse {
 export interface ProductNode {
   id: number;
   name: string;
+  type: ProductType;
   price: number;
   productImageUrl: string;
   description: string;
@@ -13,3 +14,13 @@ export interface ProductNode {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum ProductType {
+  ROLE = "ROLE",
+  OTHER = "OTHER",
+}
+
+export const ProductTypeLabel: Record<ProductType, string> = {
+  [ProductType.ROLE]: "역할",
+  [ProductType.OTHER]: "기타",
+};

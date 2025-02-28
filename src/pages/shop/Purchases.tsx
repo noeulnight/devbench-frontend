@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import { useNavigate } from "react-router-dom";
 import { usePurchases } from "../../hooks/quries/usePurchase";
-import { PurchaseResponse, PurchaseStatus } from "../../types/purchase";
+import { PurchaseResponse, PurchaseStatusLabel } from "../../types/purchase";
 import { AiOutlineLoading } from "react-icons/ai";
 import toast from "react-hot-toast";
 
@@ -15,10 +15,31 @@ function PurchaseItem({ item }: { item: PurchaseResponse }) {
     >
       <div className="flex items-center gap-4 justify-between w-full">
         <div className="flex flex-col gap-2">
-          <p>주문번호: {item.id}</p>
-          <p>상품명: {item.product.name}</p>
+          <div>
+            <p className="text-sm text-gray-400">주문번호</p>
+            <p className="">{item.id}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">상품명</p>
+            <p className="">{item.product.name}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">결제 금액</p>
+            <p className="">{item.price.toLocaleString()}P</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">결제 일시</p>
+            <p className="">
+              {item.createdAt
+                ? new Date(item.createdAt).toLocaleString("ko-KR")
+                : "N/A"}
+            </p>
+          </div>
         </div>
-        <p>{PurchaseStatus[item.status as keyof typeof PurchaseStatus]}</p>
+        <div>
+          <p className="text-sm text-gray-400">결제 상태</p>
+          <p className="">{PurchaseStatusLabel[item.status]}</p>
+        </div>
       </div>
     </div>
   );

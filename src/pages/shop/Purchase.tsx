@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePurchase } from "../../hooks/quries/usePurchase";
-import { PurchaseStatus } from "../../types/purchase";
+import { PurchaseStatusLabel } from "../../types/purchase";
 import { AiOutlineLoading } from "react-icons/ai";
 import toast from "react-hot-toast";
 
@@ -55,7 +55,7 @@ export default function Purchase() {
         <div className="flex flex-col">
           <p className="text-sm text-gray-400">결제 상태</p>
           <p className="text-2xl font-bold">
-            {PurchaseStatus[data?.status as keyof typeof PurchaseStatus]}
+            {data?.status && PurchaseStatusLabel[data.status]}
           </p>
         </div>
         <div className="flex flex-col">
