@@ -13,8 +13,8 @@ export default function Header() {
   return (
     <>
       <UserDrawer open={isOpen} onClose={() => setIsOpen(false)} />
-      <div className="flex items-center justify-between h-[50px] sticky top-0 z-10">
-        <div className="flex items-center gap-8 p-3">
+      <div className="flex items-center justify-between h-[50px] sticky top-0 z-10 bg-[#1a1a1a] w-full max-w-[700px] mx-auto p-3">
+        <div className="flex items-center gap-8">
           <button
             className="flex items-center cursor-pointer"
             onClick={() => navigate("/")}
@@ -47,6 +47,15 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            className="text-[#8c95f7] px-4 py-2 font-semibold cursor-pointer items-center gap-2 hidden md:flex"
+            onClick={() =>
+              (window.location.href = "https://discord.gg/devbench")
+            }
+          >
+            <FaDiscord />
+            디스코드
+          </button>
           {!user && (
             <button
               className="text-white font-semibold cursor-pointer"
@@ -73,15 +82,6 @@ export default function Header() {
             onClick={() => setIsOpen(true)}
           >
             <AiOutlineMenu className="text-xl" />
-          </button>
-          <button
-            className="text-[#8c95f7] px-4 py-2 font-semibold cursor-pointer items-center gap-2 hidden md:flex"
-            onClick={() =>
-              (window.location.href = "https://discord.gg/devbench")
-            }
-          >
-            <FaDiscord />
-            디스코드
           </button>
         </div>
       </div>

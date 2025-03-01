@@ -34,7 +34,7 @@ function ProductItem({
               <Tag color={item.type === ProductType.ROLE ? "blue" : "default"}>
                 {ProductTypeLabel[item.type]}
               </Tag>
-              <p className="text-lg font-bold">{item.name}</p>
+              <p className="text-lg font-bold mt-1">{item.name}</p>
               <p className="text-gray-400">{item.description}</p>
             </div>
           </div>
