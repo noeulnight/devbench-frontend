@@ -74,12 +74,14 @@ export default function UserDrawer({
           >
             포인트 상점
           </button>
-          <button
-            className="hover:text-[#bbbaba] transition-all duration-150 text-xl font-bold cursor-pointer"
-            onClick={() => handleNavigate("/purchase")}
-          >
-            결제 내역
-          </button>
+          {user && (
+            <button
+              className="hover:text-[#bbbaba] transition-all duration-150 text-xl font-bold cursor-pointer"
+              onClick={() => handleNavigate("/purchase")}
+            >
+              결제 내역
+            </button>
+          )}
           <button
             className="text-[#8c95f7] text-xl font-semibold cursor-pointer items-center gap-2 hidden md:flex"
             onClick={() =>

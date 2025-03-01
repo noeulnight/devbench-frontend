@@ -13,8 +13,8 @@ export default function Header() {
   return (
     <>
       <UserDrawer open={isOpen} onClose={() => setIsOpen(false)} />
-      <div className="flex items-center justify-between h-[40px]">
-        <div className="flex items-center gap-8">
+      <div className="flex items-center justify-between h-[50px] sticky top-0 z-10">
+        <div className="flex items-center gap-8 p-3">
           <button
             className="flex items-center cursor-pointer"
             onClick={() => navigate("/")}
@@ -35,12 +35,14 @@ export default function Header() {
             >
               포인트 상점
             </button>
-            <button
-              className="hover:text-[#bbbaba] transition-all duration-150 cursor-pointer"
-              onClick={() => navigate("/purchase")}
-            >
-              결제 내역
-            </button>
+            {user && (
+              <button
+                className="hover:text-[#bbbaba] transition-all duration-150 cursor-pointer"
+                onClick={() => navigate("/purchase")}
+              >
+                결제 내역
+              </button>
+            )}
           </div>
         </div>
 

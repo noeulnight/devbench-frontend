@@ -103,7 +103,13 @@ export default function Leaderboard() {
   const { user } = useUserData();
 
   if (!data && !isLoading) {
-    return <div>No data</div>;
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-screen">
+          <AiOutlineLoading className="w-6 h-6 animate-spin" />
+        </div>
+      </Layout>
+    );
   }
 
   return (
