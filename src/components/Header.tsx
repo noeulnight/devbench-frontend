@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <>
       <UserDrawer open={isOpen} onClose={() => setIsOpen(false)} />
-      <div className="flex items-center justify-between h-[50px] sticky top-0 z-10 bg-[#1a1a1a] w-full max-w-[700px] mx-auto p-3">
+      <div className="flex items-center justify-between h-[50px] sticky top-0 z-10 bg-[#1a1a1a] w-full p-3">
         <div className="flex items-center gap-8">
           <button
             className="flex items-center cursor-pointer"
