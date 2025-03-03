@@ -83,15 +83,20 @@ function UserLeaderboardItem({ user }: { user: UserResponse }) {
           <p className="text-xl md:text-2xl font-semibold">{user.nickname}</p>
         </div>
         <div className="flex gap-2 items-center text-sm md:text-base">
-          <p>{user.leaderboard.level} 레벨</p>
+          <p>{user.leaderboard ? user.leaderboard.level : user.level} 레벨</p>
           <div className="w-1 h-1 rounded-full bg-white" />
-          <p>{user.leaderboard.xp.toLocaleString("ko-KR")}XP</p>
+          <p>
+            {user.leaderboard
+              ? user.leaderboard.xp.toLocaleString("ko-KR")
+              : user.xp.toLocaleString("ko-KR")}
+            XP
+          </p>
         </div>
       </div>
       <div className="flex flex-col gap-2 items-end">
         <p className="text-sm text-gray-400">현재 순위</p>
         <p className="text-2xl font-semibold">
-          {user.leaderboard.currentRank}위
+          {user.leaderboard ? user.leaderboard.currentRank : "-"}위
         </p>
       </div>
     </div>
