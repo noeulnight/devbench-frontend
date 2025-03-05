@@ -52,7 +52,10 @@ function LeaderboardItem({
           <p className="w-8 text-center">{item.currentRank}</p>
           <div className="flex items-center gap-1">
             <img
-              src={item.user.avatarUrl}
+              src={
+                item.user.avatarUrl ||
+                "https://cdn.discordapp.com/embed/avatars/0.png"
+              }
               alt={`${item.user.nickname}'s profile`}
               className="w-8 h-8 rounded-full"
             />
@@ -76,7 +79,9 @@ function UserLeaderboardItem({ user }: { user: UserResponse }) {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-4">
           <img
-            src={user.avatarUrl}
+            src={
+              user.avatarUrl || "https://cdn.discordapp.com/embed/avatars/0.png"
+            }
             alt={`${user.nickname}'s profile`}
             className="w-8 h-8 rounded-full"
           />

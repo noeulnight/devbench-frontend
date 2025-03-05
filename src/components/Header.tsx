@@ -70,7 +70,10 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
             >
               <img
-                src={user.avatarUrl}
+                src={
+                  user.avatarUrl ||
+                  "https://cdn.discordapp.com/embed/avatars/0.png"
+                }
                 alt="avatar"
                 className="w-6 h-6 rounded-full"
               />

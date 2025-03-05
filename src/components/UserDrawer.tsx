@@ -31,7 +31,10 @@ export default function UserDrawer({
         {user ? (
           <div className="flex flex-col items-center justify-center bg-[#282828] w-full p-5 rounded-lg shadow-md">
             <img
-              src={user?.avatarUrl}
+              src={
+                user?.avatarUrl ||
+                "https://cdn.discordapp.com/embed/avatars/0.png"
+              }
               alt="avatar"
               className="w-24 h-24 rounded-full"
             />
