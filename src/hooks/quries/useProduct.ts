@@ -1,17 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosClient } from "../../utils/axios";
-import { ProductResponse } from "../../types/product";
+import { ProductResponse, SearchProduct } from "../../types/product";
 
-const fetchProduct = async () => {
-  const { data } = await axiosClient.get<ProductResponse>(
-    "/product?pageSize=100"
-  );
+const fetchProduct = async (searchProduct?: SearchProduct) => {
+  const { data } = await axiosClient.get<ProductResponse>("/product", {
+    params: {
+      page: 1,
+      pageSize: 10,
+      ...searchProduct,
+    },
+  });
   return data;
 };
 
-export const useProduct = () => {
+export const useProduct = (searchProduct?: SearchProduct) => {
   return useQuery({
-    queryKey: ["product"],
-    queryFn: fetchProduct,
+    queryKey: ["product", searchProduct],
+    queryFn: () => fetchProduct(searchProduct),
   });
 };

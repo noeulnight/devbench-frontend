@@ -1,3 +1,10 @@
+export interface SearchProduct {
+  query?: string;
+  type?: ProductType;
+  page?: number;
+  limit?: number;
+}
+
 export interface ProductResponse {
   nodes: ProductNode[];
   totalCount: number;

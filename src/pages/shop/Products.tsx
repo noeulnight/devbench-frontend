@@ -6,10 +6,12 @@ import {
   ProductNode,
   ProductType,
   ProductTypeLabel,
+  SearchProduct,
 } from "../../types/product";
 import { useState } from "react";
 import PurchaseDrawer from "../../components/PurchaseDrawer";
-import { Tag } from "antd";
+import { Pagination, Tag } from "antd";
+import useDebounce from "../../hooks/useDebounce";
 
 function ProductItem({
   item,
@@ -58,7 +60,9 @@ function ProductItem({
 
 export default function Products() {
   const { user } = useUserData();
-  const { data, isLoading } = useProduct();
+  const [search, setSearch] = useState<SearchProduct>({});
+  const debouncedSearch = useDebounce<SearchProduct>(search, 500);
+  const { data, isLoading } = useProduct(debouncedSearch);
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState<ProductNode | null>(null);
 
@@ -86,11 +90,35 @@ export default function Products() {
             </div>
           )}
           <div className="flex flex-col gap-3">
+            <div className="flex gap-2">
+              <select
+                className="rounded-lg p-2 bg-[#282828] text-white focus:outline-none w-min"
+                onChange={(e) =>
+                  setSearch({ ...search, type: e.target.value as ProductType })
+                }
+              >
+                <option value={undefined}>전체</option>
+                {Object.values(ProductType).map((type) => (
+                  <option key={type} value={type}>
+                    {ProductTypeLabel[type]}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                className="w-full rounded-lg p-2 bg-[#282828] text-white focus:outline-none"
+                placeholder="상품 검색"
+                onChange={(e) =>
+                  setSearch({ ...search, query: e.target.value ?? undefined })
+                }
+              />
+            </div>
             {isLoading && (
               <div className="flex justify-center items-center h-40">
                 <AiOutlineLoading className="w-6 h-6 animate-spin" />
               </div>
             )}
+
             {data &&
               !isLoading &&
               data.nodes.map((item) => (
@@ -102,6 +130,15 @@ export default function Products() {
                 />
               ))}
           </div>
+          <Pagination
+            style={{ display: "flex", justifyContent: "center" }}
+            pageSize={10}
+            showSizeChanger={false}
+            showPrevNextJumpers={false}
+            current={search.page}
+            total={data?.totalCount}
+            onChange={(page) => setSearch({ ...search, page })}
+          />
         </div>
       </Layout>
     </>

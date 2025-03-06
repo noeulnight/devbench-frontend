@@ -14,6 +14,7 @@ import { UserProvider } from "./provider/UserProvider";
 import Purchase from "./pages/shop/Purchase";
 import Purchases from "./pages/shop/Purchases";
 import Notfound from "./pages/Notfound";
+import { ConfigProvider } from "antd";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,20 +31,31 @@ createRoot(document.getElementById("root")!).render(
     <Toaster />
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
-        <UserProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route index element={<Navigate to="/leaderboard" />} />
-              <Route path="/auth/callback" element={<Callback />} />
-              <Route path="/auth/logout" element={<Logout />} />
-              <Route path="/store" element={<Products />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/purchase/:purchaseId" element={<Purchase />} />
-              <Route path="/purchase" element={<Purchases />} />
-              <Route path="*" element={<Notfound />} />
-            </Routes>
-          </BrowserRouter>
-        </UserProvider>
+        <ConfigProvider
+          theme={{
+            components: {
+              Pagination: {
+                itemActiveBg: "#282828",
+                colorPrimary: "white",
+              },
+            },
+          }}
+        >
+          <UserProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route index element={<Navigate to="/leaderboard" />} />
+                <Route path="/auth/callback" element={<Callback />} />
+                <Route path="/auth/logout" element={<Logout />} />
+                <Route path="/store" element={<Products />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/purchase/:purchaseId" element={<Purchase />} />
+                <Route path="/purchase" element={<Purchases />} />
+                <Route path="*" element={<Notfound />} />
+              </Routes>
+            </BrowserRouter>
+          </UserProvider>
+        </ConfigProvider>
       </QueryClientProvider>
     </CookiesProvider>
   </>
