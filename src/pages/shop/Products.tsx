@@ -94,10 +94,16 @@ export default function Products() {
               <select
                 className="rounded-lg p-2 bg-[#282828] text-white focus:outline-none w-min"
                 onChange={(e) =>
-                  setSearch({ ...search, type: e.target.value as ProductType })
+                  setSearch({
+                    ...search,
+                    type:
+                      e.target.value === ""
+                        ? undefined
+                        : (e.target.value as ProductType),
+                  })
                 }
               >
-                <option value={undefined}>전체</option>
+                <option value={""}>전체</option>
                 {Object.values(ProductType).map((type) => (
                   <option key={type} value={type}>
                     {ProductTypeLabel[type]}
