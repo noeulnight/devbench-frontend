@@ -9,8 +9,8 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       "/api": {
-        // target: "http://localhost:3001",
-        target: "https://devbench.limtaehyun.dev/api",
+        target: "http://localhost:3001",
+        // target: "https://devbench.limtaehyun.dev/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

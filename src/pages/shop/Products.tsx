@@ -96,6 +96,7 @@ export default function Products() {
                 onChange={(e) =>
                   setSearch({
                     ...search,
+                    page: 1,
                     type:
                       e.target.value === ""
                         ? undefined
